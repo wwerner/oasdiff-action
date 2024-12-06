@@ -40,7 +40,7 @@ delimiter=$(cat /proc/sys/kernel/random/uuid | tr -d '-')
 echo "changelog<<$delimiter" >>"$GITHUB_OUTPUT"
 
 if [ -n "$params" ]; then
-    output=$(oasdiff changelog "$base" "$revision" "$params")
+    output=$(oasdiff changelog "$base" "$revision" $params)
 else
     output=$(oasdiff changelog "$base" "$revision")
 fi
