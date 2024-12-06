@@ -39,7 +39,7 @@ set -o pipefail
 delimiter=$(cat /proc/sys/kernel/random/uuid | tr -d '-')
 echo "changelog<<$delimiter" >>"$GITHUB_OUTPUT"
 
-if [ -n "$flags" ]; then
+if [ -n "$params" ]; then
     output=$(oasdiff changelog "$base" "$revision" "$params")
 else
     output=$(oasdiff changelog "$base" "$revision")
