@@ -22,25 +22,10 @@ write_output () {
 
 readonly base="$1"
 readonly revision="$2"
-readonly include_path_params="$3"
-readonly exclude_elements="$4"
-readonly composed="$5"
-readonly output_to_file="$6"
+readonly params="$3"
+readonly output_to_file="$4"
 
-echo "running oasdiff changelog base: $base, revision: $revision, include_path_params: $include_path_params, exclude_elements: $exclude_elements, composed: $composed, output_to_file: $output_to_file"
-
-# Build flags to pass in command
-flags=""
-if [ "$include_path_params" = "true" ]; then
-    flags="$flags --include-path-params"
-fi
-if [ -n "$exclude_elements" ]; then
-    flags="$flags --exclude-elements $exclude_elements"
-fi
-if [ "$composed" = "true" ]; then
-    flags="$flags -c"
-fi
-echo "flags: $flags"
+echo "running oasdiff changelog base: $base, revision: $revision, parameters: $params, output_to_file: $output_to_file"
 
 set -o pipefail
 
@@ -54,11 +39,7 @@ set -o pipefail
 delimiter=$(cat /proc/sys/kernel/random/uuid | tr -d '-')
 echo "changelog<<$delimiter" >>"$GITHUB_OUTPUT"
 
-if [ -n "$flags" ]; then
-    output=$(oasdiff changelog "$base" "$revision" $flags)
-else
-    output=$(oasdiff changelog "$base" "$revision")
-fi
+output=$(oasdiff changelog "$base" "$revision" $flags)
 
 if [ -n "$output" ]; then
     write_output "$output"
