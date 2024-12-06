@@ -66,7 +66,5 @@ Additional arguments:
 
 | CLI                   | Action input        | Default |
 | --------------------- | ------------------- | ------- |
-| --include-path-params | include-path-params | false   |
-| --exclude-elements    | exclude-elements    | ''      |
-| --composed            | composed            | false   |
+| all, parameter string will be passed on verbatime | parameters | ''   |
 | N/A                   | output-to-file      | ''      |
