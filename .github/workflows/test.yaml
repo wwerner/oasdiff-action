@@ -264,7 +264,7 @@ jobs:
           with:
             base: 'specs/glob/base/*.yaml'
             revision: 'specs/glob/revision/*.yaml'
-            composed: true
+            parameters: '-c'
         - name: Test changelog action output
           run: |
             delimiter=$(cat /proc/sys/kernel/random/uuid | tr -d '-')
